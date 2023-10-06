@@ -1,18 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Countdown from 'react-countdown';
-import moment from 'moment-timezone';
 import './styles/styles.css';
 
 export default function App() {
-  const customDate = new Date(2023, 9, 20, 0, 0).getTime();
+  // Create customDate in EST timezone (2023-10-20, 00:00 EST)
+  const customDate = new Date('2023-10-20T00:00:00-05:00').getTime();
 
-  const [today, setToday] = useState(null);
-
-  useEffect(() => {
-    // Get the current timestamp in EST time zone
-    const estNow = moment.tz('America/New_York');
-    setToday(estNow);
-  }, []);
+  const today = new Date().getTime(); // Get the current timestamp
 
   const psCode = '44DH-ERNG-BJQ2';
 
@@ -30,7 +24,7 @@ export default function App() {
 
   return (
     <>
-      {today && (
+      {today !== customDate && (
         <div className="h-screen w-full flex justify-center items-center pattern">
           <div className='countdown-container bg-black bg-opacity-75 p-10 flex flex-col justify-center items-center rounded-lg'>
             <p className='font-bold text-4xl text-white'>Countdown</p>
@@ -38,7 +32,7 @@ export default function App() {
           </div>
         </div>
       )}
-      {today && today.isSameOrAfter(customDate) && (
+      {today === customDate && (
         <div className="h-screen w-full flex justify-center items-center pattern">
           <div className='countdown-container bg-black bg-opacity-75 p-10 flex flex-col justify-center items-center rounded-lg'>
             <p className='font-bold text-4xl text-white'>Countdown</p>
