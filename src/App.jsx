@@ -9,13 +9,10 @@ export default function App() {
 
   const psCode = '44DH-ERNG-BJQ2';
 
-  // Renderer function to display only days, hours, minutes, and seconds
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
-      // Render something when the countdown is completed
       return <span>Countdown expired</span>;
     } else {
-      // Render the countdown with a custom style
       return (
         <span style={{ color: 'white', fontSize: '50px', fontWeight: '600' }}>
           {days}d {hours}h {minutes}m {seconds}s
