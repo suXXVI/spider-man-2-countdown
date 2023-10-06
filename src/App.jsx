@@ -5,6 +5,8 @@ import './styles/styles.css';
 export default function App() {
   const customDate = new Date(2023, 9, 20, 0, 0).getTime();
 
+  const today = new Date().today;
+
   // Renderer function to display only days, hours, minutes, and seconds
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
@@ -21,11 +23,16 @@ export default function App() {
   };
 
   return (
-    <div className="h-screen w-full flex justify-center items-center pattern">
-      <div className='countdown-container bg-black bg-opacity-75 p-10 flex flex-col justify-center items-center rounded-lg'>
-        <p className='font-bold text-4xl text-white'>Countdown</p>
-        <Countdown date={customDate} renderer={renderer} style={{ color: 'white' }} />
-      </div>
-    </div>
+    <>
+      {today !== customDate && (
+        <div className="h-screen w-full flex justify-center items-center pattern">
+          <div className='countdown-container bg-black bg-opacity-75 p-10 flex flex-col justify-center items-center rounded-lg'>
+            <p className='font-bold text-4xl text-white'>Countdown</p>
+            <Countdown date={customDate} renderer={renderer} style={{ color: 'white' }} />
+          </div>
+        </div>
+      )}
+    </>
+
   );
 }
